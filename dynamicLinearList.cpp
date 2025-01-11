@@ -1,31 +1,44 @@
-#include <stdlib.h>
-
-#define Initsize 10
+# define Initsize 100
 
 typedef struct{
     int *data;
-    int Maxsize;
-    int length;
+    int length, Maxsize;
 }Seqlist;
 
-void Initlist(Seqlist &L){
-    L.data = (int*) malloc(sizeof(int)*Initsize);
+void InitList(Seqlist &L){
+    L.data = new int[Initsize];
     L.length = 0;
     L.Maxsize = Initsize;
 }
 
-void IncreaseSize(Seqlist &L, int len){
-    int *p = L.data;
-    L.data = (int*) malloc(sizeof(int)*(len+L.Maxsize));
-    for(int i=0; i<L.length;i++)
-        L.data[i] = p[i];
-    L.Maxsize = L.Maxsize + len;
-    free(p);
+bool InsertElem(Seqlist &L, int i, int e){
+    if (i<1||i>L.length+1)
+        return false;
+    if (i>=L.Maxsize)
+        return false;
+    for (int j = L.length; j >= i; j--)
+        L.data[j]=L.data[j-1];
+    L.data[i]=e;
+    L.length++;
+    return true;
 }
 
-int main(){
-    Seqlist L;
-    Initlist(L);
-    IncreaseSize(L,5);
-    return 0;
+bool ListDelete(Seqlist &L, int i, int &e){
+    if (i<1||i>L.length)
+        return false;
+    e = L.data[i-1];
+    int j;
+    for (j=i; j < L.length; j++)
+        L.data[j-1] = L.data[j];
+    L.length--;
+    return true;
+}
+
+int locateElem(Seqlist L, int e){
+    int i;
+    for (i=0; i<L.length;i++)
+        if (L.data[i]==e)
+            return i+1;
+        else 
+            return 0;
 }
