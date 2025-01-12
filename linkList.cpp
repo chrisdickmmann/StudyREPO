@@ -1,16 +1,23 @@
-#include <stdio.h>
-//link list without head node
-typedef struct LNode {
+#include <cstdlib>
+typedef struct LNode{
     int data;
-    struct LNode *next;
-}LNode, *linkList;
+    LNode* next;
+}LNode,*Linklist;
 
-bool InitList (LNode &L){
-    L.data = NULL;
+bool InitList(Linklist &L)
+{
+    L = NULL;
     return true;
 }
 
-void main(){
-    linkList L;
-    InitList(L);
+bool ListInsert(Linklist &L, int i, int e)
+{
+    //find place i node
+    if (L==NULL){
+        LNode* s = (LNode*)malloc(sizeof (LNode));
+        s->data = e;
+        s->next = L;
+        L = s;
+        return true;
+    }
 }
