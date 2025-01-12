@@ -1,8 +1,8 @@
 # namespace explaination
 
-namespace is way to group and organize related code(like variables, functions, classes, etc.) under a unique name to avoid naming conflicts.
+Namespace is a way to group and organize related code(like variables, functions, classes, etc.) under a unique name to avoid naming conflicts.
 
-## syntax
+## Syntax
 ```cpp
 namespace NamespaceName{
     int x = 10;
@@ -12,7 +12,7 @@ namespace NamespaceName{
     }
 }
 ```
-## accessing Namespace Members
+## Accessing Namespace Members
 
 ### using the scope resolution operater '::'
 ```c++
